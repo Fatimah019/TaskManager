@@ -13,7 +13,7 @@ export default class HomeList extends Component {
       zIndex: "-9999999999",
       paddingBottom: "80px",
       backgroundColor: "rgba(35, 35, 202, 0.8)",
-      checked: "#000",
+      isChecked: false,
       showEditPage: false,
     };
   }
@@ -59,6 +59,9 @@ export default class HomeList extends Component {
     axios
       .put(`/complete/task/${id}`)
       .then((res) => {
+        this.setState({
+          isChecked: true,
+        });
         window.location.reload(false);
       })
       .catch((err) => {
@@ -170,7 +173,8 @@ export default class HomeList extends Component {
                                 task.complete === true ? "inactive" : "active"
                               }
                               // checked={this.state.checked}
-                              onClick={() => this.onCheckTask(task._id)}
+                              defaultChecked={this.state.isChecked}
+                              onChange={() => this.onCheckTask(task._id)}
                             />
                             <i
                               className="fa fa-close"

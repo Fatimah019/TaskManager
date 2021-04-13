@@ -13,7 +13,7 @@ export default class AllList extends Component {
       zIndex: "-9999999999",
       paddingBottom: "80px",
       backgroundColor: "rgba(35, 35, 202, 0.8)",
-      checked: "#000",
+      isChecked: false,
       showEditPage: false,
     };
   }
@@ -59,6 +59,9 @@ export default class AllList extends Component {
     axios
       .put(`/complete/task/${id}`)
       .then((res) => {
+        this.setState({
+          isChecked: true,
+        });
         window.location.reload(false);
       })
       .catch((err) => {
@@ -119,31 +122,64 @@ export default class AllList extends Component {
                 this.state.tasks.map((task) => {
                   return (
                     <div className="list" key={task._id}>
-                      <p>{task.complete === false ? "Pending" : "Complete"}</p>
+                      <div className="flex space-between">
+                        <p>
+                          {task.complete === false ? "Pending" : "Complete"}
+                        </p>
+                        <i
+                          className="fa fa-arrow-right"
+                          onClick={() => this.displayEditPage(task._id)}
+                        ></i>
+                      </div>
                       <div className="flex space-between align-center">
                         <div>
-                          <span>
+                          <span
+                            className={
+                              task.complete === true ? "complete" : "incomplete"
+                            }
+                          >
                             <b>{task.taskname}</b>
                           </span>
                           <br />
                           <div className="flex space-between align-center">
-                            <span>{task.startdate}</span>
-                            <span>{task.endDate}</span>
+                            <div>
+                              <p>Start</p>
+                              <span className="start-date">
+                                {task.startdate}
+                              </span>
+                            </div>
+                            <div>
+                              <p>End</p>
+                              <span>{task.endDate}</span>
+                            </div>
                           </div>
-                          <p>{task.category}</p>
+                          <p
+                            className={
+                              task.complete === true ? "complete" : "incomplete"
+                            }
+                          >
+                            {task.category}
+                          </p>
                         </div>
                         <div>
-                          <input type="checkbox" />
-                          <i className="fa fa-close"></i>
+                          <input
+                            type="checkbox"
+                            className={
+                              task.complete === true ? "inactive" : "active"
+                            }
+                            onClick={() => this.onCheckTask(task._id)}
+                          />
+                          <i
+                            className="fa fa-close"
+                            onClick={() => this.deleteTask(task._id)}
+                          ></i>
                         </div>
                       </div>
                     </div>
                   );
                 })
               ) : (
-                <div className="text-center">
-                  <h3>No Task Has Been Created</h3>
-                </div>
+                <div className="text-center"> </div>
               )}
 
               {/* end list */}
