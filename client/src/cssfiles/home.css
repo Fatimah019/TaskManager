@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css?family=Lora|Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@200&display=swap");
+*:root {
+  box-sizing: border-box;
+}
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 90%;
+  top: 0;
+  left: 5%;
+  right: 5%;
+}
+.main {
+  margin-top: 80px;
+  height: 100%;
+}
+.main-category {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: auto;
+}
+.categories {
+  background-color: #fff;
+  width: 95%;
+  margin: 10px auto;
+  box-shadow: 2px 3px 4px rgb(143, 142, 142);
+  border-radius: 6px;
+  padding: 10px;
+}
+.category-list {
+  color: #000;
+  text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  .main-category {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main-category {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (max-width: 360px) {
+  .main-category {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

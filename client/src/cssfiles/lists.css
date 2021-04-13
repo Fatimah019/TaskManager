@@ -1,0 +1,162 @@
+.lists-page {
+  height: 100%;
+  color: #fff;
+}
+.list-header {
+  position: fixed;
+  width: 100%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.lists-page .lists-page-top {
+  width: 90%;
+  margin: auto;
+  /* height: 60px; */
+}
+.icons {
+  background-color: #fff;
+  color: rgba(35, 35, 202, 0.8);
+  padding: 8px;
+  border-radius: 50%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.lists-page .lists {
+  background-color: #fff;
+  border-radius: 50px 50px 0px 0px;
+  height: 100%;
+  padding: 20px 0px;
+  color: #000;
+  margin-top: 150px;
+  height: 100vh;
+}
+.list-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.list {
+  margin: 20px 0px;
+}
+.add-icon {
+  position: fixed;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  bottom: 2%;
+}
+.fa-plus {
+  color: #fff;
+  background-color: rgba(35, 35, 202, 0.8);
+  padding: 12px;
+  border-radius: 50%;
+}
+.complete {
+  color: grey;
+  text-decoration: line-through;
+  text-decoration-color: gray;
+}
+.incomplete {
+  background-color: transparent;
+}
+.start-date {
+  margin-right: 10px;
+}
+.active {
+  display: inline;
+}
+.inactive {
+  display: none;
+}
+/* add itens modal */
+/*  */
+form label {
+  margin-bottom: 5px;
+}
+
+form,
+form label,
+form label textarea {
+  width: 100%;
+}
+textarea {
+  padding: 5px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.text-plan,
+.text-name {
+  border-bottom: 1px solid grey;
+}
+form label input,
+form label select {
+  width: 95%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.add-btn {
+  background-color: rgba(35, 35, 202, 0.8);
+  color: #fff;
+  padding: 5px 15px;
+  border: none;
+  outline: none;
+}
+.fa-close {
+  margin-left: 25px;
+}
+
+.edit-box {
+  display: fixed;
+  top: 10%;
+  bottom: 10%;
+  margin: auto;
+  width: 70%;
+  height: 100vh;
+  z-index: 99999999999999999999999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-box-inner {
+  width: 70%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+}
+.edit-box-inner form input,
+.edit-box-inner form textarea {
+  border: none;
+}
+.edit-box-inner form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+.date-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .edit-box-inner {
+    width: 90%;
+  }
+  .date-start {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .date-start input {
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .edit-box-inner {
+    width: 100%;
+  }
+}
