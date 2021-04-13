@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AddItem from "../AddItem";
+import EditItem from "../AddItem/edit.js";
 import "../../cssfiles/lists.css";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -12,8 +13,18 @@ export default class AllList extends Component {
       zIndex: "-9999999999",
       paddingBottom: "80px",
       backgroundColor: "rgba(35, 35, 202, 0.8)",
+      checked: "#000",
+      showEditPage: false,
     };
   }
+
+  displayEditPage = (id) => {
+    localStorage.setItem("task_id", id);
+    this.setState({
+      showEditPage: true,
+    });
+    console.log("hee");
+  };
 
   getAllTasks = () => {
     axios
@@ -44,6 +55,28 @@ export default class AllList extends Component {
     }
   };
 
+  onCheckTask = (id) => {
+    axios
+      .put(`/complete/task/${id}`)
+      .then((res) => {
+        window.location.reload(false);
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
+
+  deleteTask = (id) => {
+    axios
+      .delete(`/delete/task/${id}`)
+      .then((res) => {
+        window.location.reload(false);
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
+
   componentDidMount() {
     window.scrollTo(0, 0);
     window.addEventListener("scroll", this.changeHeaderOnScroll);
@@ -56,17 +89,25 @@ export default class AllList extends Component {
       backgroundColor: this.state.backgroundColor,
     };
 
+    const showEditStyle = !this.state.showEditPage
+      ? { display: "none" }
+      : { display: "block" };
     return (
       <div className="lists-page">
         <AddItem />
-
+        <div style={showEditStyle}>
+          <EditItem />
+        </div>
         <div className="list-header" style={topStyle}>
           <div className="lists-page-top">
             <i className="fa fa-folder icons"></i>
             <br />
             <span>All</span>
             <br />
-            <span>{this.state.tasks.length} tasks</span>
+            <span>
+              {this.state.tasks.length}
+              tasks
+            </span>
           </div>
         </div>
         {/*  */}
@@ -74,7 +115,6 @@ export default class AllList extends Component {
           <div className="container">
             <div className="list-container">
               {/* list */}
-
               {this.state.tasks.length !== 0 ? (
                 this.state.tasks.map((task) => {
                   return (
