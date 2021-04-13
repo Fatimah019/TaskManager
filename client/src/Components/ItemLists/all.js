@@ -142,13 +142,13 @@ export default class AllList extends Component {
                           </span>
                           <br />
                           <div className="flex space-between align-center">
-                            <div>
+                            <div className="text-center">
                               <p>Start</p>
                               <span className="start-date">
                                 {task.startdate}
                               </span>
                             </div>
-                            <div>
+                            <div className="text-center">
                               <p>End</p>
                               <span>{task.endDate}</span>
                             </div>
