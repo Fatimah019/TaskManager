@@ -159,4 +159,14 @@ form label select {
   .edit-box-inner {
     width: 100%;
   }
+  .start-end-form {
+    flex-direction: column;
+  }
+  .start-end-form div {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .start-end-form div input {
+    width: 100%;
+  }
 }

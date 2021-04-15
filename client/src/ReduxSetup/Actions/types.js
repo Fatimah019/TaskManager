@@ -1,0 +1,11 @@
+export const SIGNUP = "SIGNUP";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const GET_USER = "GET_USER";
+export const UPDATE_USER = "UPDATE_USER";
+export const CREATE_TASK = "CREATE_TASK";
+export const FETCH_TASKS = "FETCH_TASKS";
+export const FETCH_TASK = "FETCH_TASK";
+export const COMPLETE_TASK = "COMPLETE_TASK";
+export const EDIT_TASK = "EDIT_TASK";
+export const DELETE_TASK = "DELETE_TASK";

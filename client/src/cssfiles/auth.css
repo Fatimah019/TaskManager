@@ -1,0 +1,66 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+}
+.auth-form-container {
+  width: 60%;
+}
+
+.auth-form-container form {
+  width: 100%;
+}
+
+.auth-form-container form label {
+  width: 100%;
+  background-color: transparent;
+  padding: 5px;
+  border-bottom: 1px solid rgba(35, 35, 202, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.auth-form-container form label input {
+  width: 95%;
+  background: transparent;
+  backdrop-filter: blur(5px);
+  outline: none;
+  border: none;
+}
+input:focus {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.auth-btn {
+  background: rgba(35, 35, 202, 0.8);
+  backdrop-filter: blur(33px);
+  color: #fff;
+  width: 100px;
+  padding: 5px 15px;
+  border-color: transparent;
+  border-radius: 5px;
+}
+.links {
+  color: rgba(35, 35, 202, 0.8);
+}
+@media screen and (max-width: 768px) {
+  .auth-form-container {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .auth-form-container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .auth-form-container {
+    width: 90%;
+  }
+}

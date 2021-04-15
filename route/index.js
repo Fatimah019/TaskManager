@@ -2,11 +2,20 @@ const express = require("express");
 const router = express.Router();
 const task = require("../controller");
 
+//register a user
+router.post("/signup", task.Signup);
+
+//log in a user
+router.post("/login", task.Login);
+
+//get a user
+router.post("/user/:id", task.GetUser);
+
 // create new task
-router.post("/new/task", task.NewTask);
+router.post("/new/task/:id", task.NewTask);
 
 // get tasks
-router.post("/tasks", task.GetAllTasks);
+router.post("/tasks/:id", task.GetAllTasks);
 
 // get a task
 router.post("/task/:id", task.GetTask);

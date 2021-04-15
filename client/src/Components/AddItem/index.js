@@ -10,8 +10,8 @@ export default class AddItem extends Component {
     super(props);
     this.state = {
       taskname: "",
-      textPlan: "",
-      startdate: "",
+      taskPlan: "",
+      taskstartdate: "",
       endDate: "",
       category: "",
       tasks: [],
@@ -40,14 +40,14 @@ export default class AddItem extends Component {
   submit = () => {
     const newItem = {
       taskname: this.state.taskname,
-      startdate: this.state.startdate,
+      startdate: this.state.taskstartdate,
       endDate: this.state.endDate,
       category: this.state.category,
-      textPlan: this.state.textPlan,
+      textPlan: this.state.taskPlan,
     };
-
+    let id = localStorage.getItem("user_id");
     axios
-      .post("/new/task", newItem)
+      .post(`/new/task/${id}`, newItem)
       .then((res) => {
         this.setState({
           tasks: this.state.tasks.push(res.data.data),
@@ -96,17 +96,19 @@ export default class AddItem extends Component {
                 ></textarea>
               </label>
               <br />
-              <label className="flex align-center space-between">
+              <label className="flex align-center space-between start-end-form ">
                 <div>
+                  <span>Start</span>
                   <input
                     type="date"
                     placeholder="Start Date"
-                    name="startdate"
-                    value={this.state.startdate}
+                    name="taskstartdate"
+                    value={this.state.taskstartdate}
                     onChange={this.handleInputChange}
                   />
                 </div>
                 <div>
+                  <span>End</span>
                   <input
                     type="date"
                     placeholder="End Date"

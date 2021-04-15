@@ -8,8 +8,8 @@ export default class EditItem extends Component {
     super(props);
     this.state = {
       taskname: "",
-      textPlan: "",
-      startdate: "",
+      taskPlan: "",
+      taskstartdate: "",
       endDate: "",
       category: "",
       tasks: [],
@@ -44,10 +44,10 @@ export default class EditItem extends Component {
       .then((res) => {
         this.setState({
           taskname: res.data.data.taskname,
-          startdate: res.data.data.startdate,
+          taskstartdate: res.data.data.taskstartdate,
           endDate: res.data.data.endDate,
           category: res.data.data.category,
-          textPlan: res.data.data.textPlan,
+          taskPlan: res.data.data.taskPlan,
         });
         if (res.data.data.complete === true) {
           this.setState({
@@ -80,10 +80,10 @@ export default class EditItem extends Component {
   onSubmit = (e) => {
     const newTask = {
       taskname: this.refs.taskname.value,
-      startdate: this.refs.startdate.value,
+      taskstartdate: this.refs.taskstartdate.value,
       endDate: this.refs.endDate.value,
       category: this.refs.category.value,
-      textPlan: this.refs.textPlan.value,
+      taskPlan: this.refs.taskPlan.value,
     };
     this.editTask(newTask);
     window.location.reload(false);
@@ -140,9 +140,9 @@ export default class EditItem extends Component {
                 rows="3"
                 placeholder="What are you planning"
                 className="text-plan"
-                name="textPlan"
-                ref="textPlan"
-                value={this.state.textPlan}
+                name="taskPlan"
+                ref="taskPlan"
+                value={this.state.taskPlan}
                 disabled={enableStyle}
                 onChange={this.handleInputChange}
               ></textarea>
@@ -154,9 +154,9 @@ export default class EditItem extends Component {
                 <input
                   type="date"
                   placeholder="Start Date"
-                  name="startdate"
-                  ref="startdate"
-                  value={this.state.startdate}
+                  name="taskstartdate"
+                  ref="taskstartdate"
+                  value={this.state.taskstartdate}
                   disabled={enableStyle}
                   onChange={this.handleInputChange}
                 />

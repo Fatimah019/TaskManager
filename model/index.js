@@ -1,4 +1,4 @@
 module.exports = {
-  Todo: require("./task"),
-  TodoDetail: require("./details"),
+  TaskManager: require("./task"),
+  TaskManagerUser: require("./user"),
 };

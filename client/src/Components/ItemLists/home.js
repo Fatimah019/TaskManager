@@ -3,9 +3,13 @@ import AddItem from "../AddItem";
 import EditItem from "../AddItem/edit.js";
 import "../../cssfiles/lists.css";
 import { toast } from "react-toastify";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchTasks, deleteTask } from "../../ReduxSetup/Actions/tasks";
+import PropTypes from "prop-types";
 import axios from "axios";
 
-export default class HomeList extends Component {
+class HomeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,19 +28,6 @@ export default class HomeList extends Component {
       showEditPage: true,
     });
     console.log("hee");
-  };
-
-  getAllTasks = () => {
-    axios
-      .post("/tasks")
-      .then((res) => {
-        this.setState({
-          tasks: res.data.data,
-        });
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
   };
 
   changeHeaderOnScroll = (e) => {
@@ -70,20 +61,13 @@ export default class HomeList extends Component {
   };
 
   deleteTask = (id) => {
-    axios
-      .delete(`/delete/task/${id}`)
-      .then((res) => {
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
+    this.props.deleteTask(id);
   };
 
   componentDidMount() {
     window.scrollTo(0, 0);
     window.addEventListener("scroll", this.changeHeaderOnScroll);
-    this.getAllTasks();
+    this.props.fetchTasks(this.state);
   }
   render() {
     const topStyle = {
@@ -123,8 +107,8 @@ export default class HomeList extends Component {
           <div className="container">
             <div className="list-container">
               {/* list */}
-              {this.state.tasks.length !== 0 ? (
-                this.state.tasks.map((task) => {
+              {this.props.tasks.length !== 0 ? (
+                this.props.tasks.data.map((task) => {
                   let taskcategory = task.category === "Home";
                   if (taskcategory) {
                     return (
@@ -152,7 +136,7 @@ export default class HomeList extends Component {
                             <br />
                             <div className="flex space-between align-center">
                               <span className="start-date">
-                                {task.startdate}
+                                {task.taskstartdate}
                               </span>
                               <span>{task.endDate}</span>
                             </div>
@@ -203,3 +187,15 @@ export default class HomeList extends Component {
     );
   }
 }
+
+HomeList.propTypes = {
+  fetchTasks: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  tasks: state.tasks.tasks,
+});
+
+export default connect(mapStateToProps, { fetchTasks, deleteTask })(
+  withRouter(HomeList)
+);

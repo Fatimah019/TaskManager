@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../cssfiles/home.css";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchUser } from "../../ReduxSetup/Actions/user";
 import { Link } from "react-router-dom";
 
-export default class Home extends Component {
+class Home extends Component {
   componentDidMount() {
+    this.props.fetchUser(this.state);
     window.scrollTo(0, 0);
   }
   render() {
     return (
       <div className="container home">
-        <div className="header">
+        <div className="container header flex space-between align-center">
           <i className="fa fa-bars"></i>
+          <p>{this.props.user.username}</p>
         </div>
         <div className="main">
           <h2>Categories</h2>
@@ -94,3 +99,9 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+});
+
+export default connect(mapStateToProps, { fetchUser })(withRouter(Home));

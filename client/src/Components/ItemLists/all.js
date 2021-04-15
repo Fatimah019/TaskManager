@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import AddItem from "../AddItem";
-import EditItem from "../AddItem/edit.js";
+import EditItem from "../AddItem/edit";
 import "../../cssfiles/lists.css";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchTasks, deleteTask } from "../../ReduxSetup/Actions/tasks";
+import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
 
-export default class AllList extends Component {
+class AllList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,20 +27,6 @@ export default class AllList extends Component {
     this.setState({
       showEditPage: true,
     });
-    console.log("hee");
-  };
-
-  getAllTasks = () => {
-    axios
-      .post("/tasks")
-      .then((res) => {
-        this.setState({
-          tasks: res.data.data,
-        });
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
   };
 
   changeHeaderOnScroll = (e) => {
@@ -70,21 +60,15 @@ export default class AllList extends Component {
   };
 
   deleteTask = (id) => {
-    axios
-      .delete(`/delete/task/${id}`)
-      .then((res) => {
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
+    this.props.deleteTask(id);
   };
 
   componentDidMount() {
     window.scrollTo(0, 0);
     window.addEventListener("scroll", this.changeHeaderOnScroll);
-    this.getAllTasks();
+    this.props.fetchTasks(this.state);
   }
+
   render() {
     const topStyle = {
       zIndex: this.state.zIndex,
@@ -108,7 +92,7 @@ export default class AllList extends Component {
             <span>All</span>
             <br />
             <span>
-              {this.state.tasks.length}
+              {this.props.tasks.length}
               tasks
             </span>
           </div>
@@ -118,8 +102,8 @@ export default class AllList extends Component {
           <div className="container">
             <div className="list-container">
               {/* list */}
-              {this.state.tasks.length !== 0 ? (
-                this.state.tasks.map((task) => {
+              {this.props.tasks.length !== 0 ? (
+                this.props.tasks.data.map((task) => {
                   return (
                     <div className="list" key={task._id}>
                       <div className="flex space-between">
@@ -145,7 +129,7 @@ export default class AllList extends Component {
                             <div className="text-center">
                               <p>Start</p>
                               <span className="start-date">
-                                {task.startdate}
+                                {task.taskstartdate}
                               </span>
                             </div>
                             <div className="text-center">
@@ -193,3 +177,15 @@ export default class AllList extends Component {
     );
   }
 }
+
+AllList.propTypes = {
+  fetchTasks: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  tasks: state.tasks.tasks,
+});
+
+export default connect(mapStateToProps, { fetchTasks, deleteTask })(
+  withRouter(AllList)
+);
