@@ -15,7 +15,8 @@ class Home extends Component {
     return (
       <div className="container home">
         <div className="container header flex space-between align-center">
-          <i className="fa fa-bars"></i>
+          {/* <i className="fa fa-bars"></i> */}
+          <h3>TaskManger</h3>
           <p>{this.props.user.username}</p>
         </div>
         <div className="main">

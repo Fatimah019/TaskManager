@@ -21,6 +21,10 @@ export default function (state = initialState, action) {
         ...state,
         task: action.payload,
       };
+    case actionTypes.COMPLETE_TASK:
+      return {
+        ...state,
+      };
     case actionTypes.EDIT_TASK:
       return {
         ...state,

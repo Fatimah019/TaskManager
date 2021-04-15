@@ -3,8 +3,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 
-let id = localStorage.getItem("user_id");
-
 export const handleSignUp = ({ email, username, password }) => (dispatch) => {
   axios
     .post("/signup", {

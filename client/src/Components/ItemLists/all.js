@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import AddItem from "../AddItem";
 import EditItem from "../AddItem/edit";
 import "../../cssfiles/lists.css";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchTasks, deleteTask } from "../../ReduxSetup/Actions/tasks";
+import {
+  fetchTasks,
+  deleteTask,
+  completeTask,
+} from "../../ReduxSetup/Actions/tasks";
 import PropTypes from "prop-types";
-import { ToastContainer, toast } from "react-toastify";
 
 class AllList extends Component {
   constructor(props) {
@@ -46,17 +48,10 @@ class AllList extends Component {
   };
 
   onCheckTask = (id) => {
-    axios
-      .put(`/complete/task/${id}`)
-      .then((res) => {
-        this.setState({
-          isChecked: true,
-        });
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
+    this.props.completeTask(id);
+    this.setState({
+      isChecked: true,
+    });
   };
 
   deleteTask = (id) => {
@@ -186,6 +181,8 @@ const mapStateToProps = (state) => ({
   tasks: state.tasks.tasks,
 });
 
-export default connect(mapStateToProps, { fetchTasks, deleteTask })(
-  withRouter(AllList)
-);
+export default connect(mapStateToProps, {
+  fetchTasks,
+  deleteTask,
+  completeTask,
+})(withRouter(AllList));

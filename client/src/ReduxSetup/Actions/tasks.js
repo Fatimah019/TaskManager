@@ -28,8 +28,7 @@ export const createTask = ({
       });
       res.data.status === false
         ? toast.error(res.data.message)
-        : console.log(res.data);
-      //  (window.location = `/dashboard/${id}`);
+        : window.location.reload(true);
     })
     .catch((err) => {
       toast.error(err);
@@ -45,7 +44,7 @@ export const fetchTasks = () => (dispatch) => {
         type: actionTypes.FETCH_TASKS,
         payload: response.data,
       });
-      console.log(response.data);
+      // console.log(response.data);
     })
     .catch((err) => {
       toast.error(err);
