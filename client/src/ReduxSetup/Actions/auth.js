@@ -42,16 +42,17 @@ export const handleLogin = ({ email, password }) => (dispatch) => {
       if (res.data.status === false) {
         toast.error(res.data.message);
       } else {
+        window.location.replace("/");
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user_id", res.data.data.id);
       }
       // console.log(res.data);
-      window.location.replace("/");
     })
     .catch((error) => {
       toast.error(error);
     });
 };
+
 export const logout = () => (dispatch) => {
   dispatch({
     type: actionTypes.LOGOUT,

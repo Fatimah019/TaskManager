@@ -16,11 +16,13 @@ class Home extends Component {
       <div className="container home">
         <div className="container header flex space-between align-center">
           {/* <i className="fa fa-bars"></i> */}
-          <h3>TaskManger</h3>
+          <h5>TaskManger</h5>
           <p>{this.props.user.username}</p>
         </div>
         <div className="main">
-          <h2>Categories</h2>
+          <p>
+            <b>Categories</b>
+          </p>
           <div className="main-category">
             <Link to="/all" className="category-list">
               <div className="categories">
