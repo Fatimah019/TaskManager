@@ -13,6 +13,11 @@
   left: 5%;
   right: 5%;
 }
+.logout {
+  background-color: rgb(180, 12, 12);
+  color: #fff;
+  padding: 2px 5px;
+}
 .main {
   margin-top: 80px;
   height: 100%;

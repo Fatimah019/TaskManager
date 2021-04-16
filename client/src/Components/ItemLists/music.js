@@ -61,7 +61,7 @@ class MusicList extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener("scroll", this.changeHeaderOnScroll);
+    // window.addEventListener("scroll", this.changeHeaderOnScroll);
     this.props.fetchTasks(this.state);
   }
   render() {
@@ -76,7 +76,9 @@ class MusicList extends Component {
       : { display: "block" };
     return (
       <div className="lists-page">
-        <AddItem />
+        <div className="add-page">
+          <AddItem />
+        </div>
         <div style={showEditStyle}>
           <EditItem />
         </div>
@@ -87,10 +89,10 @@ class MusicList extends Component {
             <span>Music</span>
             <br />
             <span>
-              {this.state.tasks.length === 0
+              {this.props.tasks.length === 0
                 ? ""
-                : this.state.tasks.map((task) => {
-                    let taskcategory = task.category === "Home";
+                : this.props.tasks.data.map((task) => {
+                    let taskcategory = task.category === "Music";
                     return <div>{taskcategory.length}</div>;
                   })}{" "}
               tasks
@@ -109,9 +111,13 @@ class MusicList extends Component {
                     return (
                       <div className="list" key={task._id}>
                         <div className="flex space-between">
-                          <p>
+                          <pre
+                            className={
+                              task.complete === true ? "complete" : "incomplete"
+                            }
+                          >
                             {task.complete === false ? "Pending" : "Complete"}
-                          </p>
+                          </pre>
                           <i
                             className="fa fa-arrow-right"
                             onClick={() => this.displayEditPage(task._id)}
@@ -120,30 +126,28 @@ class MusicList extends Component {
                         <div className="flex space-between align-center">
                           <div>
                             <span
-                              className={
-                                task.complete === true
-                                  ? "complete"
-                                  : "incomplete"
-                              }
+                            // className={
+                            //   task.complete === true
+                            //     ? "complete"
+                            //     : "incomplete"
+                            // }
                             >
                               <b>{task.taskname}</b>
                             </span>
                             <br />
+                            <br />
                             <div className="flex space-between align-center">
-                              <span className="start-date">
-                                {task.taskstartdate}
-                              </span>
-                              <span>{task.endDate}</span>
+                              <div className="start-date">
+                                <span>Start</span>
+                                <br />
+                                <span>{task.taskstartdate}</span>
+                              </div>
+                              <div className="end-date">
+                                <span>End</span>
+                                <br />
+                                <span>{task.endDate}</span>
+                              </div>
                             </div>
-                            <p
-                              className={
-                                task.complete === true
-                                  ? "complete"
-                                  : "incomplete"
-                              }
-                            >
-                              {task.category}
-                            </p>
                           </div>
                           <div>
                             <input

@@ -40,7 +40,7 @@ export default class AddItem extends Component {
   submit = () => {
     const newItem = {
       taskname: this.state.taskname,
-      startdate: this.state.taskstartdate,
+      taskstartdate: this.state.taskstartdate,
       endDate: this.state.endDate,
       category: this.state.category,
       textPlan: this.state.taskPlan,
@@ -65,7 +65,7 @@ export default class AddItem extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-modal">
         <Modal show={this.state.showModal} onHide={this.exitModal}>
           <Modal.Body>
             <div className="text-center">

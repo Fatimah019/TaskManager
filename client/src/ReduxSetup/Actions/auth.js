@@ -46,7 +46,6 @@ export const handleLogin = ({ email, password }) => (dispatch) => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user_id", res.data.data.id);
       }
-      // console.log(res.data);
     })
     .catch((error) => {
       toast.error(error);

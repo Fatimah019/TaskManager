@@ -4,20 +4,31 @@ import "../../cssfiles/home.css";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../../ReduxSetup/Actions/user";
+import { logout } from "../../ReduxSetup/Actions/auth";
+import { fetchTasks } from "../../ReduxSetup/Actions/tasks";
 import { Link } from "react-router-dom";
+import AddItem from "../AddItem";
 
 class Home extends Component {
   componentDidMount() {
     this.props.fetchUser(this.state);
+    this.props.fetchTasks(this.state);
     window.scrollTo(0, 0);
   }
+  logOut = () => {
+    this.props.logout(this.state);
+  };
   render() {
     return (
-      <div className="container home">
+      <div className="container-fluid home">
+        <AddItem />
         <div className="container header flex space-between align-center">
           {/* <i className="fa fa-bars"></i> */}
-          <h5>TaskManger</h5>
+          {/* <h5>TaskManger</h5> */}
           <p>{this.props.user.username}</p>
+          <pre onClick={() => this.logOut()} className="logout">
+            Logout
+          </pre>
         </div>
         <div className="main">
           <p>
@@ -32,7 +43,12 @@ class Home extends Component {
                 <br />
                 <span>All</span>
                 <br />
-                <span>23</span>
+                <span>
+                  {" "}
+                  {this.props.tasks.length !== 0
+                    ? this.props.tasks.data.length + " "
+                    : 0 + " "}
+                </span>
                 <span>Tasks</span>
               </div>
             </Link>
@@ -44,7 +60,7 @@ class Home extends Component {
                 <br />
                 <span>Work</span>
                 <br />
-                <span>23</span>
+                <span></span>
                 <span>Tasks</span>
               </div>
             </Link>
@@ -56,7 +72,7 @@ class Home extends Component {
                 <br />
                 <span>Home</span>
                 <br />
-                <span>23</span>
+                <span></span>
                 <span>Tasks</span>
               </div>
             </Link>
@@ -68,7 +84,7 @@ class Home extends Component {
                 <br />
                 <span>Music</span>
                 <br />
-                <span>23</span>
+                <span></span>
                 <span>Tasks</span>
               </div>
             </Link>
@@ -80,7 +96,7 @@ class Home extends Component {
                 <br />
                 <span>Study</span>
                 <br />
-                <span>23</span>
+                <span></span>
                 <span>Tasks</span>
               </div>
             </Link>
@@ -92,7 +108,7 @@ class Home extends Component {
                 <br />
                 <span>Travel</span>
                 <br />
-                <span>23</span>
+                <span></span>
                 <span>Tasks</span>
               </div>
             </Link>
@@ -105,6 +121,9 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user.user,
+  tasks: state.tasks.tasks,
 });
 
-export default connect(mapStateToProps, { fetchUser })(withRouter(Home));
+export default connect(mapStateToProps, { fetchUser, fetchTasks, logout })(
+  withRouter(Home)
+);

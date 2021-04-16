@@ -113,6 +113,8 @@ export default class EditItem extends Component {
           <div className="text-right">
             <i className="fa fa-close" onClick={() => this.closeEdit()}></i>
           </div>
+          <br />
+          <br />
           <div className="flex space-between">
             <p>
               <b>Your Task</b>

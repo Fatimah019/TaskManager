@@ -10,11 +10,9 @@
 .auth-form-container {
   width: 60%;
 }
-
 .auth-form-container form {
   width: 100%;
 }
-
 .auth-form-container form label {
   width: 100%;
   background-color: transparent;
@@ -36,7 +34,6 @@ input:focus {
   border: none;
   outline: none;
 }
-
 .auth-btn {
   background: rgba(35, 35, 202, 0.8);
   backdrop-filter: blur(33px);

@@ -60,7 +60,7 @@ class AllList extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener("scroll", this.changeHeaderOnScroll);
+    // window.addEventListener("scroll", this.changeHeaderOnScroll);
     this.props.fetchTasks(this.state);
   }
 
@@ -87,7 +87,9 @@ class AllList extends Component {
             <span>All</span>
             <br />
             <span>
-              {this.props.tasks.length}
+              {this.props.tasks.length !== 0
+                ? this.props.tasks.data.length + " "
+                : 0 + " "}
               tasks
             </span>
           </div>
@@ -102,9 +104,13 @@ class AllList extends Component {
                   return (
                     <div className="list" key={task._id}>
                       <div className="flex space-between">
-                        <p>
+                        <pre
+                          className={
+                            task.complete === true ? "complete" : "incomplete"
+                          }
+                        >
                           {task.complete === false ? "Pending" : "Complete"}
-                        </p>
+                        </pre>
                         <i
                           className="fa fa-arrow-right"
                           onClick={() => this.displayEditPage(task._id)}
@@ -113,32 +119,28 @@ class AllList extends Component {
                       <div className="flex space-between align-center">
                         <div>
                           <span
-                            className={
-                              task.complete === true ? "complete" : "incomplete"
-                            }
+                          // className={
+                          //   task.complete === true
+                          //     ? "complete"
+                          //     : "incomplete"
+                          // }
                           >
                             <b>{task.taskname}</b>
                           </span>
                           <br />
+                          <br />
                           <div className="flex space-between align-center">
-                            <div className="text-center">
-                              <p>Start</p>
-                              <span className="start-date">
-                                {task.taskstartdate}
-                              </span>
+                            <div className="start-date">
+                              <span>Start</span>
+                              <br />
+                              <span>{task.taskstartdate}</span>
                             </div>
-                            <div className="text-center">
-                              <p>End</p>
+                            <div className="end-date">
+                              <span>End</span>
+                              <br />
                               <span>{task.endDate}</span>
                             </div>
                           </div>
-                          <p
-                            className={
-                              task.complete === true ? "complete" : "incomplete"
-                            }
-                          >
-                            {task.category}
-                          </p>
                         </div>
                         <div>
                           <input
@@ -146,6 +148,7 @@ class AllList extends Component {
                             className={
                               task.complete === true ? "inactive" : "active"
                             }
+                            // checked={this.state.checked}
                             onClick={() => this.onCheckTask(task._id)}
                           />
                           <i

@@ -13,7 +13,6 @@
 .lists-page .lists-page-top {
   width: 90%;
   margin: auto;
-  /* height: 60px; */
 }
 .icons {
   background-color: #fff;
@@ -38,30 +37,19 @@
 }
 .list {
   margin: 20px 0px;
-}
-.add-icon {
-  position: fixed;
-  width: 90%;
-  left: 5%;
-  right: 5%;
-  bottom: 2%;
-}
-.fa-plus {
-  color: #fff;
-  background-color: rgba(35, 35, 202, 0.8);
-  padding: 12px;
-  border-radius: 50%;
+  border-bottom: 1px solid grey;
 }
 .complete {
-  color: grey;
-  text-decoration: line-through;
-  text-decoration-color: gray;
+  color: rgb(148, 147, 147);
+  background-color: rgb(6, 88, 6);
 }
 .incomplete {
-  background-color: transparent;
+  background-color: rgb(180, 12, 12);
 }
-.start-date {
+.start-date,
+.end-date {
   margin-right: 10px;
+  text-align: center;
 }
 .active {
   display: inline;
@@ -105,6 +93,19 @@ form label select {
   border: none;
   outline: none;
 }
+.add-icon {
+  position: fixed;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  bottom: 2%;
+}
+.fa-plus {
+  color: #fff;
+  background-color: rgba(35, 35, 202, 0.8);
+  padding: 12px;
+  border-radius: 50%;
+}
 .fa-close {
   margin-left: 25px;
 }
@@ -114,12 +115,13 @@ form label select {
   top: 10%;
   bottom: 10%;
   margin: auto;
-  width: 70%;
+  width: 80%;
   height: 100vh;
   z-index: 99999999999999999999999999;
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(100%);
 }
 .edit-box-inner {
   width: 70%;
@@ -144,6 +146,9 @@ form label select {
   align-items: center;
 }
 @media screen and (max-width: 600px) {
+  .edit-box {
+    width: 80%;
+  }
   .edit-box-inner {
     width: 90%;
   }
@@ -156,6 +161,9 @@ form label select {
   }
 }
 @media screen and (max-width: 480px) {
+  .edit-box {
+    width: 90%;
+  }
   .edit-box-inner {
     width: 100%;
   }
@@ -170,3 +178,5 @@ form label select {
     width: 100%;
   }
 }
+
+/* */
