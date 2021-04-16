@@ -184,7 +184,7 @@ class HomeList extends Component {
 }
 
 HomeList.propTypes = {
-  fetchTasks: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

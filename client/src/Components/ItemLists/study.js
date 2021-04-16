@@ -181,7 +181,7 @@ class StudyList extends Component {
   }
 }
 StudyList.propTypes = {
-  fetchTasks: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

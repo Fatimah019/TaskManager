@@ -181,7 +181,7 @@ class TravelList extends Component {
   }
 }
 TravelList.propTypes = {
-  fetchTasks: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

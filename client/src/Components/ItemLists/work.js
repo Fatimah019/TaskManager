@@ -182,7 +182,7 @@ class WorkList extends Component {
   }
 }
 WorkList.propTypes = {
-  fetchTasks: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

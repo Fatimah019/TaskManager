@@ -182,7 +182,7 @@ class MusicList extends Component {
   }
 }
 MusicList.propTypes = {
-  fetchTasks: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
